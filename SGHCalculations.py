@@ -1,7 +1,6 @@
 import math
 
 
-
 def Moment(Fy,Zx,Omega = 1.67):
     """
     Gets allowable bending moment(Ma) for a steel beam.
@@ -27,11 +26,12 @@ def MinimumZx(Ma, Fy, Omega = 1.67):
     Zx = (Ma* Omega)/Fy
 
     Ma : Allowable bending moment,
-    Fy : Yeild stress,
+    Fy : Yeild stress(,
     Zx : Plastic section modulus about neutral axis,
     Omega: Factor of safety for bending moment(1.67),
     Mn : Nominal moment strength
     """
+
     if Omega <= 1.0:
         raise ValueError('Omega must be greater than 1.0')
 

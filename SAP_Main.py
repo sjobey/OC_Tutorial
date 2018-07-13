@@ -1,24 +1,33 @@
-import csv
-from itertools import groupby
-import math
-import  SGHUtilities as Utils
+import SGHUtilities as Utils
 import SGHCalculations as Calcs
 
-#Path to file
+#Path to files
 pathSAPOutput = r'I:/BOS/Users/SGHComputationalTeam/Projects_WIP/Kendall MIT/SAP_TEST.csv'
 pathAISC = r'I:/BOS/Users/SGHComputationalTeam/SharedPython/SAP_Utilities/aisc-shapes-database-v15.0.xlsx'
 
-
 """
-with open(path, 'r') as f:
-    data = list(csv.reader(f, delimiter = ','))
-    #print(data[:1])
-    highest = SAPUtilities.maxDCR(data,0, 17)
-    SAPUtilities.writeCSV(highest,'C:/Users/chsjoberg/Documents/Python Scripts/MITK_DCR_Test.csv')
+# Example 1
+
+sapData = Utils.CSVReader(pathSAPOutput)
+highest = Utils.MaxDCR(sapData,'Name','TotalDCR')
+Utils.WriteCSVFromDict(highest,'C:/Users/chsjoberg/Documents/Python Scripts/MITK_DCR_Test.csv')
 """
 
-asicData = list(Utils.ExcelReader(pathAISC,1))
 
-lightest = Utils.GetLightestShapeAISC(asicData, 1000, 'W')
+# Example 2
+Ma = 80*12 #kip inches
+Fy = 50 #ksi
 
-print('Lightest Shape: ', lightest['EDI_Std_Nomenclature'])
+minZx = Calcs.MinimumZx(Ma, Fy)
+print('Minimum Zx: ', minZx)
+
+asicData = Utils.ExcelReader(pathAISC,1)
+lightest = Utils.GetMinShapeByZx(asicData, minZx, 'W')
+
+print('Minimum Shape: ', lightest['AISC_Manual_Label'])
+
+
+
+
+
+
