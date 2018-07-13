@@ -18,7 +18,7 @@ Utils.WriteCSVFromDict(highest,'C:/Users/chsjoberg/Documents/Python Scripts/MITK
 Ma = 80*12 #kip inches
 Fy = 50 #ksi
 
-minZx = Calcs.MinimumZx(Ma, Fy)
+minZx = Calcs.MinimumZx(Ma, Fy, 123123, 1231231,123123)
 print('Minimum Zx: ', minZx)
 
 asicData = Utils.ExcelReader(pathAISC,1)
